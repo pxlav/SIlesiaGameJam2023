@@ -6,6 +6,11 @@ public class MainMenu : MonoBehaviour
 {
     public bool isOn;
     [SerializeField] GameObject menuObj;
+
+    void Start()
+    {
+        isOn = true;
+    }
     void Update()
     {
         if(isOn == true)
