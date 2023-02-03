@@ -13,9 +13,13 @@ public class PlayerController2D : MonoBehaviour
     public bool isJumping;
     public Jumping m_jumping;
     [SerializeField]float lastFrameSpeed;
-    public GameObject[] playerSides; // 0-init 1-left 2-right
-    public int wichPlayerSide;
+    public GameObject[] playerSidesBefore; // 0-init 1-left 2-right
+    public GameObject[] playerSidesAfter; // 0-init 1-left 2-right
+    public int wichPlayerSideBefore;
+    public int wichPlayerSideAfter;
     public TimeChanging m_timeChanging;
+    public GameObject playerBeforeObj;
+    public GameObject playerAfterObj;
 
     void Start()
     {
@@ -39,41 +43,86 @@ public class PlayerController2D : MonoBehaviour
         {
             if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            wichPlayerSide = 0;
+            wichPlayerSideBefore = 0;
+            wichPlayerSideAfter = 0;
         }
-        if(wichPlayerSide == 0)
+        if(m_timeChanging.wichTimeStand == 0)
         {
-            playerSides[0].SetActive(true);
-            playerSides[1].SetActive(false);
-            playerSides[2].SetActive(false);
+            playerBeforeObj.SetActive(true);
+            playerAfterObj.SetActive(false);
+            if(wichPlayerSideBefore == 0)
+            {
+                playerSidesBefore[0].SetActive(true);
+                playerSidesBefore[1].SetActive(false);
+                playerSidesBefore[2].SetActive(false);
+            }
+            if(wichPlayerSideBefore == 1)
+            {
+                playerSidesBefore[0].SetActive(false);
+                playerSidesBefore[1].SetActive(true);
+                playerSidesBefore[2].SetActive(false);
+            }
+            if(wichPlayerSideBefore == 2)
+            {
+                playerSidesBefore[0].SetActive(false);
+                playerSidesBefore[1].SetActive(false);
+                playerSidesBefore[2].SetActive(true);
+            }
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                wichPlayerSideBefore = 1;
+            }
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                wichPlayerSideBefore = 2;
+            }
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                wichPlayerSideBefore = 1;
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                wichPlayerSideBefore = 2;
+            }
         }
-        if(wichPlayerSide == 1)
+        if(m_timeChanging.wichTimeStand == 1)
         {
-            playerSides[0].SetActive(false);
-            playerSides[1].SetActive(true);
-            playerSides[2].SetActive(false);
-        }
-        if(wichPlayerSide == 2)
-        {
-            playerSides[0].SetActive(false);
-            playerSides[1].SetActive(false);
-            playerSides[2].SetActive(true);
-        }
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            wichPlayerSide = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            wichPlayerSide = 2;
-        }
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            wichPlayerSide = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            wichPlayerSide = 2;
+            playerBeforeObj.SetActive(false);
+            playerAfterObj.SetActive(true);
+            if(wichPlayerSideAfter == 0)
+            {
+                playerSidesAfter[0].SetActive(true);
+                playerSidesAfter[1].SetActive(false);
+                playerSidesAfter[2].SetActive(false);
+            }
+            if(wichPlayerSideAfter == 1)
+            {
+                playerSidesAfter[0].SetActive(false);
+                playerSidesAfter[1].SetActive(true);
+                playerSidesAfter[2].SetActive(false);
+            }
+            if(wichPlayerSideAfter == 2)
+            {
+                playerSidesAfter[0].SetActive(false);
+                playerSidesAfter[1].SetActive(false);
+                playerSidesAfter[2].SetActive(true);
+            }
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                wichPlayerSideAfter = 1;
+            }
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                wichPlayerSideAfter = 2;
+            }
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                wichPlayerSideAfter = 1;
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                wichPlayerSideAfter = 2;
+            }
         }
         float move = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(speed * move, rb.velocity.y);
