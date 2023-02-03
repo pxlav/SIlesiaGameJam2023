@@ -15,6 +15,7 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]float lastFrameSpeed;
     public GameObject[] playerSides; // 0-init 1-left 2-right
     public int wichPlayerSide;
+    public TimeChanging m_timeChanging;
 
     void Start()
     {
@@ -34,7 +35,9 @@ public class PlayerController2D : MonoBehaviour
     }
     void Update()
     {
-        if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        if(m_timeChanging.isChangingTime == false)
+        {
+            if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             wichPlayerSide = 0;
         }
@@ -92,7 +95,7 @@ public class PlayerController2D : MonoBehaviour
             }
         }
         */
-        
+        }
     }
 }
 
