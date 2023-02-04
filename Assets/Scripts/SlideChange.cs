@@ -21,7 +21,7 @@ public class SlideChange : MonoBehaviour
     {
         
         slideTimer += Time.deltaTime;
-        if(slideTimer > 11)
+        if(slideTimer > 14)
         {
             slides.SetActive(false);
             if(Input.GetKeyDown(KeyCode.Space))

@@ -13,8 +13,8 @@ public class PlayerController2D : MonoBehaviour
     public bool isJumping;
     public Jumping m_jumping;
     [SerializeField]float lastFrameSpeed;
-    public GameObject[] playerSidesBefore; // 0-init 1-left 2-right
-    public GameObject[] playerSidesAfter; // 0-init 1-left 2-right
+    public GameObject[] playerSidesBefore; // 0-init 1-left 2-right 3 - back
+    public GameObject[] playerSidesAfter; // 0-init 1-left 2-right 3 - back
     public int wichPlayerSideBefore;
     public int wichPlayerSideAfter;
     public TimeChanging m_timeChanging;
@@ -69,11 +69,11 @@ public class PlayerController2D : MonoBehaviour
         }
         if(m_timeChanging.isChangingTime == false)
         {
-            if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
-        {
-            wichPlayerSideBefore = 0;
-            wichPlayerSideAfter = 0;
-        }
+            if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.W))
+            {
+                wichPlayerSideBefore = 0;
+                wichPlayerSideAfter = 0;
+            }
         if(m_timeChanging.wichTimeStand == 0)
         {
             playerBeforeObj.SetActive(true);
@@ -83,18 +83,28 @@ public class PlayerController2D : MonoBehaviour
                 playerSidesBefore[0].SetActive(true);
                 playerSidesBefore[1].SetActive(false);
                 playerSidesBefore[2].SetActive(false);
+                playerSidesBefore[3].SetActive(false);
             }
             if(wichPlayerSideBefore == 1)
             {
                 playerSidesBefore[0].SetActive(false);
                 playerSidesBefore[1].SetActive(true);
                 playerSidesBefore[2].SetActive(false);
+                playerSidesBefore[3].SetActive(false);
             }
             if(wichPlayerSideBefore == 2)
             {
                 playerSidesBefore[0].SetActive(false);
                 playerSidesBefore[1].SetActive(false);
                 playerSidesBefore[2].SetActive(true);
+                playerSidesBefore[3].SetActive(false);
+            }
+            if(wichPlayerSideBefore == 3)
+            {
+                playerSidesBefore[0].SetActive(false);
+                playerSidesBefore[1].SetActive(false);
+                playerSidesBefore[2].SetActive(false);
+                playerSidesBefore[3].SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.A))
             {
@@ -104,6 +114,10 @@ public class PlayerController2D : MonoBehaviour
             {
                 wichPlayerSideBefore = 2;
             }
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                wichPlayerSideBefore = 3;
+            }
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 wichPlayerSideBefore = 1;
@@ -111,6 +125,10 @@ public class PlayerController2D : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 wichPlayerSideBefore = 2;
+            }
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                wichPlayerSideBefore = 3;
             }
         }
         if(m_timeChanging.wichTimeStand == 1)
@@ -122,18 +140,28 @@ public class PlayerController2D : MonoBehaviour
                 playerSidesAfter[0].SetActive(true);
                 playerSidesAfter[1].SetActive(false);
                 playerSidesAfter[2].SetActive(false);
+                playerSidesAfter[3].SetActive(false);
             }
             if(wichPlayerSideAfter == 1)
             {
                 playerSidesAfter[0].SetActive(false);
                 playerSidesAfter[1].SetActive(true);
                 playerSidesAfter[2].SetActive(false);
+                playerSidesAfter[3].SetActive(false);
             }
             if(wichPlayerSideAfter == 2)
             {
                 playerSidesAfter[0].SetActive(false);
                 playerSidesAfter[1].SetActive(false);
                 playerSidesAfter[2].SetActive(true);
+                playerSidesAfter[3].SetActive(false);
+            }
+            if(wichPlayerSideAfter == 3)
+            {
+                playerSidesAfter[0].SetActive(false);
+                playerSidesAfter[1].SetActive(false);
+                playerSidesAfter[2].SetActive(false);
+                playerSidesAfter[3].SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.A))
             {
@@ -143,6 +171,10 @@ public class PlayerController2D : MonoBehaviour
             {
                 wichPlayerSideAfter = 2;
             }
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                wichPlayerSideAfter = 3;
+            }
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 wichPlayerSideAfter = 1;
@@ -150,6 +182,10 @@ public class PlayerController2D : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 wichPlayerSideAfter = 2;
+            }
+            if(Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                wichPlayerSideAfter = 3;
             }
         }
         float move = Input.GetAxis("Horizontal");
