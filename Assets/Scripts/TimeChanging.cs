@@ -13,7 +13,7 @@ public class TimeChanging : MonoBehaviour
     void Start()
     {
         isChangingTime = false;
-        waitChangeTimer = 2.0f;
+        waitChangeTimer = 1.0f;
         changingInProgress = false;
         if(wichTimeStand == 0)
         {
@@ -33,7 +33,7 @@ public class TimeChanging : MonoBehaviour
         {
             isChangingTime = true;
         }
-        if(isChangingTime == true && waitChangeTimer == 2.0f)
+        if(isChangingTime == true && waitChangeTimer == 1.0f)
         {
             changingInProgress = true;
         }
@@ -50,7 +50,7 @@ public class TimeChanging : MonoBehaviour
                 if(wichTimeStand == 0)
                 {
                     wichTimeStand = 1;
-                    waitChangeTimer = 2.0f;
+                    waitChangeTimer = 1.0f;
                     mapObjects[0].SetActive(false);
                     mapObjects[1].SetActive(true);
                     isChangingTime = false;
@@ -59,7 +59,7 @@ public class TimeChanging : MonoBehaviour
                 else if(wichTimeStand == 1)
                 {
                     wichTimeStand = 0;
-                    waitChangeTimer = 2.0f;
+                    waitChangeTimer = 1.0f;
                     mapObjects[0].SetActive(true);
                     mapObjects[1].SetActive(false);
                     isChangingTime = false;

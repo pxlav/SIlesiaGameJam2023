@@ -20,12 +20,20 @@ public class PlayerController2D : MonoBehaviour
     public TimeChanging m_timeChanging;
     public GameObject playerBeforeObj;
     public GameObject playerAfterObj;
+    public GameObject playerTimeChangeBefore;
+    public GameObject playerNotTimeBefore;
+    public GameObject playerNotTimeAfter;
+    public GameObject playerTimeChangeAfter;
 
     void Start()
     {
         jumpTimer = 0.8f;
         canJump = true;
         isJumping = false;
+        playerNotTimeBefore.SetActive(true);
+        playerTimeChangeBefore.SetActive(false);
+        playerNotTimeAfter.SetActive(true);
+        playerTimeChangeAfter.SetActive(false);
     }
     const float halfPlayerWidth = 0.2f;
     private void OnDrawGizmos()
@@ -38,7 +46,27 @@ public class PlayerController2D : MonoBehaviour
         lastFrameSpeed = rb.velocity.y;
     }
     void Update()
-    {
+    {   
+        if(m_timeChanging.waitChangeTimer == 1.0f)
+        {
+                playerNotTimeBefore.SetActive(true);
+                playerTimeChangeBefore.SetActive(false);
+                playerNotTimeAfter.SetActive(true);
+                playerTimeChangeAfter.SetActive(false);
+        }
+        if(m_timeChanging.waitChangeTimer < 1.0f)
+        {
+            if(m_timeChanging.wichTimeStand == 0)
+            {
+                playerNotTimeBefore.SetActive(false);
+                playerTimeChangeBefore.SetActive(true);
+            } 
+            if(m_timeChanging.wichTimeStand == 1)
+            {
+                playerNotTimeAfter.SetActive(false);
+                playerTimeChangeAfter.SetActive(true);
+            } 
+        }
         if(m_timeChanging.isChangingTime == false)
         {
             if(!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
