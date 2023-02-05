@@ -24,6 +24,7 @@ public class PlayerController2D : MonoBehaviour
     public GameObject playerNotTimeBefore;
     public GameObject playerNotTimeAfter;
     public GameObject playerTimeChangeAfter;
+    public GameObject walkingAudio;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class PlayerController2D : MonoBehaviour
         playerTimeChangeBefore.SetActive(false);
         playerNotTimeAfter.SetActive(true);
         playerTimeChangeAfter.SetActive(false);
+        walkingAudio.SetActive(false);
     }
     const float halfPlayerWidth = 0.2f;
     private void OnDrawGizmos()
@@ -73,6 +75,7 @@ public class PlayerController2D : MonoBehaviour
             {
                 wichPlayerSideBefore = 0;
                 wichPlayerSideAfter = 0;
+                walkingAudio.SetActive(false);
             }
         if(m_timeChanging.wichTimeStand == 0)
         {
@@ -109,9 +112,11 @@ public class PlayerController2D : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.A))
             {
                 wichPlayerSideBefore = 1;
+                walkingAudio.SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.D))
             {
+                walkingAudio.SetActive(true);
                 wichPlayerSideBefore = 2;
             }
             if(Input.GetKeyDown(KeyCode.W))
@@ -120,10 +125,12 @@ public class PlayerController2D : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                walkingAudio.SetActive(true);
                 wichPlayerSideBefore = 1;
             }
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
+                walkingAudio.SetActive(true);
                 wichPlayerSideBefore = 2;
             }
             if(Input.GetKeyDown(KeyCode.UpArrow))
@@ -166,10 +173,12 @@ public class PlayerController2D : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.A))
             {
                 wichPlayerSideAfter = 1;
+                walkingAudio.SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.D))
             {
                 wichPlayerSideAfter = 2;
+                walkingAudio.SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.W))
             {
@@ -178,10 +187,12 @@ public class PlayerController2D : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 wichPlayerSideAfter = 1;
+                walkingAudio.SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 wichPlayerSideAfter = 2;
+                walkingAudio.SetActive(true);
             }
             if(Input.GetKeyDown(KeyCode.UpArrow))
             {
