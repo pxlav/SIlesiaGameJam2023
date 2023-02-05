@@ -9,6 +9,12 @@ public class PushPull : MonoBehaviour
     public Transform worldParent;
     public BoxCollider2D objCollision;
     public bool isTaken;
+    public GameObject pressEObj;
+
+    void Start()
+    {
+        pressEObj.SetActive(false);
+    }
 
     void Update()
     {
@@ -19,6 +25,7 @@ public class PushPull : MonoBehaviour
         else if(isTaken == true && Input.GetKeyDown(KeyCode.E))
         {
             isTaken = false;
+            takingObj = null;
         }
         if(takingObj != null)
         {
@@ -28,6 +35,7 @@ public class PushPull : MonoBehaviour
             takingObj.transform.parent = handParent.transform.parent;
             takingObj.transform.position = handParent.transform.position;
             isTaken = true;
+            pressEObj.SetActive(false);
         }else
         {
             objCollision.isTrigger = false;
@@ -38,17 +46,19 @@ public class PushPull : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "PushPullObj")
+        if(other.tag == "PushPullObj" && isTaken == false)
         {
             takingObj = other.gameObject;
+            pressEObj.SetActive(true);
             objCollision = other.GetComponent<BoxCollider2D>();
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "PushPullObj")
+        if(other.tag == "PushPullObj" && isTaken == false)
         {
-            //takingObj = null;
+            takingObj = null;
+            pressEObj.SetActive(false);
         }
     }
 }

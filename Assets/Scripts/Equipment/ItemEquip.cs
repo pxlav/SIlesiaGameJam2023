@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemEquip : MonoBehaviour
 {   
+    /*
     public GameObject itemObj;
     public GameObject pressFWindow;
     public EquipmentDataBase m_equipmentDataBase;
@@ -36,4 +37,5 @@ public class ItemEquip : MonoBehaviour
             Destroy(itemObj);
         }
     }
+    */
 }

@@ -9,12 +9,14 @@ public class SlideChange : MonoBehaviour
     public GameObject bckgObj;
     public GameObject[] listObj;
     public int wichSlide;
+    public GameObject playerObj;
     
     void Start()
     {
         listObj[0].SetActive(false);
         listObj[1].SetActive(false);
         bckgObj.SetActive(true);
+        playerObj.SetActive(false);
     }
 
     void Update()
@@ -43,6 +45,8 @@ public class SlideChange : MonoBehaviour
                 listObj[0].SetActive(false);
                 listObj[1].SetActive(false);
                 bckgObj.SetActive(false);
+                playerObj.SetActive(true);
+
 
             }
             

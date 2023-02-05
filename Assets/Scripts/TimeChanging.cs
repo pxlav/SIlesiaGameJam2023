@@ -9,10 +9,12 @@ public class TimeChanging : MonoBehaviour
     public bool isChangingTime;
     public bool changingInProgress;
     public GameObject[] mapObjects; // 0 - before 1 - after
+    public GameObject timeVignette;
     
     void Start()
     {
         isChangingTime = false;
+        timeVignette.SetActive(false);
         waitChangeTimer = 1.0f;
         changingInProgress = false;
         if(wichTimeStand == 0)
@@ -45,8 +47,11 @@ public class TimeChanging : MonoBehaviour
     public void ChangeTheTime()
     {
          waitChangeTimer -= Time.deltaTime;
+         timeVignette.SetActive(true);
             if(waitChangeTimer <= 0)
-            {
+            {   
+                timeVignette.SetActive(false);
+                
                 if(wichTimeStand == 0)
                 {
                     wichTimeStand = 1;
